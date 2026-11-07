@@ -40,6 +40,49 @@ The program reads a text file and a script of questions about it.
 | <img src="docs/assets/readme/icons/arrow-down-wide-narrow.svg" width="18" height="18" alt=""> **Sorted while it counts** | [CircularDoublyLinkedList.java](CircularDoublyLinkedList.java) updates a word and moves it into place, so the list stays ordered by frequency. |
 | <img src="docs/assets/readme/icons/case-sensitive.svg" width="18" height="18" alt=""> **Simple counting rules** | Every word is lower-cased, and any character that is not a letter or digit separates words. |
 
+## A quick tour
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/tour/input-dark.webp">
+        <img src="docs/assets/readme/tour/input-light.webp" alt="Code card showing the first lines of textFile.txt">
+      </picture>
+      <h3>Sample text</h3>
+      The first six lines of textFile.txt, which the example directives load.
+    </td>
+    <td width="50%" valign="top">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/tour/run-dark.webp">
+        <img src="docs/assets/readme/tour/run-light.webp" alt="Terminal showing a directives file and the output of word_frequency">
+      </picture>
+      <h3>Directives and answers</h3>
+      A directives file and the answers it produces in one run of word_frequency.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/tour/parser-dark.webp">
+        <img src="docs/assets/readme/tour/parser-light.webp" alt="Code card showing textlineParser in word_frequency.java">
+      </picture>
+      <h3>Splitting words</h3>
+      Every character that is not a letter or digit becomes a space, then the line is split into words.
+    </td>
+    <td width="50%" valign="top">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/tour/list-dark.webp">
+        <img src="docs/assets/readme/tour/list-light.webp" alt="Code card showing addFreq in CircularDoublyLinkedList.java">
+      </picture>
+      <h3>Counting by frequency</h3>
+      addFreq raises the count of a word, and the list then moves the node to its place.
+    </td>
+  </tr>
+</table>
+
+<p align="center"><sub>The terminal card shows real output of word_frequency. The other cards show files as they are in the repository.</sub></p>
+
 ## Features
 
 **Directives**
