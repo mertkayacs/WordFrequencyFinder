@@ -490,13 +490,21 @@ public class CircularDoublyLinkedList<E extends Comparable<E>>{
   
     //header holds the maximum frequency 
 	  Node<E> walk = header;
+    Node<E> tieStart = null; //first node of the current run of equal frequencies
     for(int i = 0 ; i < number ; i++){
 		
 		if(walk.getFrequency() == walk.getNext().getFrequency()){
     
       i--;
+      if(walk == tieStart){ //a full lap of equal frequencies, nothing left to count
+        break;
+      }
+      if(tieStart == null){
+        tieStart = walk;
+      }
     
     }else{
+      tieStart = null;
 
       if(i == number-1){
         System.out.print(walk.getElement()+" "+walk.getFrequency());
@@ -532,14 +540,22 @@ public class CircularDoublyLinkedList<E extends Comparable<E>>{
       //Lowest freq. aka tail.
       Node<E> walk = header.getPrev(); 
 
+      Node<E> tieStart = null; //first node of the current run of equal frequencies
       for(int i = 0 ; i < number ; i++){
 
       
         if(walk.getFrequency() == walk.getPrev().getFrequency()){
       
           i--;
+          if(walk == tieStart){ //a full lap of equal frequencies, nothing left to count
+            break;
+          }
+          if(tieStart == null){
+            tieStart = walk;
+          }
       
         }else{
+          tieStart = null;
           if(i == number-1){
             System.out.print(walk.getElement()+" "+walk.getFrequency());
             break;
@@ -576,24 +592,39 @@ public class CircularDoublyLinkedList<E extends Comparable<E>>{
    * */
   protected void printNth(int number){
 
+    if(isEmpty())
+      return;
+
     //Starts from the biggest.
     Node<E> walk = header;
     int counter = 0;
 
     if(number == 1){
+      Node<E> first = walk;
+      boolean tie;
       do{
-        System.out.print(walk.getElement()+" "+walk.getFrequency());
+        System.out.print(first.getElement()+" "+first.getFrequency());
 
-        if(walk.getFrequency() == walk.getNext().getFrequency()){        
+        tie = first.getFrequency() == first.getNext().getFrequency();
+        if(tie){        
           System.out.print(", ");
         }
 
-      }while(walk.getFrequency() == walk.getNext().getFrequency());
+        first = first.getNext();
+      }while(tie && first != walk); //stops after a full lap of equal frequencies
     }
 
 
     //Counts frequency
+    int lastCounter = -1; //counter at the previous visit of the header
     while(counter != number){
+
+      //A full lap that never counted a new frequency means every node ties.
+      if(walk == header){
+        if(counter == lastCounter)
+          break;
+        lastCounter = counter;
+      }
       
       //Is it different.(in terms of frequency)
       if(walk.getPrev().getFrequency() != walk.getFrequency()){
@@ -612,6 +643,7 @@ public class CircularDoublyLinkedList<E extends Comparable<E>>{
 
     //Print the nth freq words (if more than one) 
     int freq = walk.getFrequency();
+    Node<E> groupStart = walk;
     while(walk.getFrequency() == freq){
       
       System.out.print(walk.getElement()+" "+walk.getFrequency());
@@ -621,6 +653,9 @@ public class CircularDoublyLinkedList<E extends Comparable<E>>{
       }
 
       walk = walk.getNext();
+
+      if(walk == groupStart) //the whole list is one frequency
+        break;
 
     }
 
@@ -636,6 +671,13 @@ public class CircularDoublyLinkedList<E extends Comparable<E>>{
    * clear the entire list.
    */
   protected void truncateList(int number){
+
+        //N at or above the number of frequency levels (or an empty list) clears everything.
+        if(isEmpty() || number >= size){
+          header = null;
+          size = 0;
+          return;
+        }
         
         //Lowest freq. aka tail.
         Node<E> walk = header.getPrev(); 
@@ -663,7 +705,7 @@ public class CircularDoublyLinkedList<E extends Comparable<E>>{
           }
 
           //It would loop in size = 1
-          if(size == 1){
+          if(size == 1 && counter < number){
             remove(header);
             return;
           }
