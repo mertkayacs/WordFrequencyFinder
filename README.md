@@ -37,7 +37,7 @@ The program reads a text file and a script of questions about it.
 |  |  |
 |---|---|
 | <img src="docs/assets/readme/icons/file-text.svg" width="18" height="18" alt=""> **Directive driven** | One directive per line in a plain file. Run it once and the answers print to standard output. |
-| <img src="docs/assets/readme/icons/arrow-down-wide-narrow.svg" width="18" height="18" alt=""> **Sorted while it counts** | [CircularDoublyLinkedList.java](CircularDoublyLinkedList.java) updates a word and moves it into place, so the list stays ordered by frequency. |
+| <img src="docs/assets/readme/icons/arrow-down-wide-narrow.svg" width="18" height="18" alt=""> **Sorted while it counts** | The [circular doubly linked list](CircularDoublyLinkedList.java) updates a word and moves it into place, so the list stays ordered by frequency. |
 | <img src="docs/assets/readme/icons/case-sensitive.svg" width="18" height="18" alt=""> **Simple counting rules** | Every word is lower-cased, and any character that is not a letter or digit separates words. |
 
 ## A quick tour
@@ -47,10 +47,10 @@ The program reads a text file and a script of questions about it.
     <td width="50%" valign="top">
       <picture>
         <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/tour/input-dark.webp">
-        <img src="docs/assets/readme/tour/input-light.webp" alt="Code card showing the first lines of textFile.txt">
+        <img src="docs/assets/readme/tour/input-light.webp" alt="Terminal card showing textFile.txt and the first lines of directives.txt">
       </picture>
-      <h3>Sample text</h3>
-      The first six lines of textFile.txt, which the example directives load.
+      <h3>Text and directives</h3>
+      textFile.txt is the sample text. directives.txt lists the commands the program runs: load, print and truncate.
     </td>
     <td width="50%" valign="top">
       <picture>
